@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FcZeniTeam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #f5f5f5;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #f5f5f5;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main content styles */
+        main {
+            padding: 40px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #0047BB;
+            margin-bottom: 10px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #0047BB;
+            margin: 40px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        /* Team categories */
+        .team-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid #0047BB;
+            border-radius: 30px;
+            color: #0047BB;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover {
+            background-color: #f0f7ff;
+        }
+
+        .category-btn.active {
+            background-color: #0047BB;
+            color: white;
+        }
+
+        /* Team grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .player-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .player-photo {
+            height: 250px;
+            background-color: #f0f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0047BB;
+            font-size: 5rem;
+            border-bottom: 3px solid #0047BB;
+        }
+
+        .player-info {
+            padding: 20px;
+        }
+
+        .player-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0047BB;
+            margin-bottom: 5px;
+        }
+
+        .player-position {
+            color: #00A9E0;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0047BB;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        /* Coaching staff */
+        .coaching-staff {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .coach-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #00A9E0;
+        }
+
+        .coach-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0047BB;
+            margin-bottom: 10px;
+        }
+
+        .coach-role {
+            color: #00A9E0;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Legends section */
+        .legends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .legend-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #f5f5f5;
+        }
+
+        .legend-content {
+            padding: 25px;
+        }
+
+        .legend-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0047BB;
+            margin-bottom: 10px;
+        }
+
+        .legend-era {
+            color: #00A9E0;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .legend-achievements {
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #00264D;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #f5f5f5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            background-color: #0047BB;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #f5f5f5;
+            color: #00264D;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>FC <span>ZeniTeam</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="page.html">Главная</a></li>
+                        <li><a href="page2.html">Матчи</a></li>
+                        <li><a href="page3.html" class="active">Команда</a></li>
+                        <li><a href="page4.html">Медиа-фан</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-title">
+            <h2>Наша Команда</h2>
+            <p>Текущий состав, тренерский штаб и легенды клуба</p>
+        </div>
+
+        <div class="team-categories">
+            <button class="category-btn active" data-category="all">Все игроки</button>
+            <button class="category-btn" data-category="goalkeepers">Вратари</button>
+            <button class="category-btn" data-category="defenders">Защитники</button>
+            <button class="category-btn" data-category="midfielders">Полузащитники</button>
+            <button class="category-btn" data-category="forwards">Нападающие</button>
+        </div>
+
+        <h3 class="section-title">Текущий состав</h3>
+        
+        <div class="team-grid">
+            <!-- Goalkeepers -->
+            <div class="player-card" data-category="goalkeepers">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/34c/g2puvleyobq1ou8v0158qsc3y2a3ks2a.png" alt="Picture background" width="330" height="250" aria-hidden="true">   
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Денис Адамов</h4>
+                    <div class="player-position">Вратарь</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">27 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">195 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">83 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="player-card" data-category="goalkeepers">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/752/0sthjzcio9cyrbxh718mhagjn1lo2ltq.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Евгений Латышонок</h4>
+                    <div class="player-position">Вратарь</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">27 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">188 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">78 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="player-card" data-category="goalkeepers">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/215/cq15gpcoo9qnsyy1jd4v8u31g19ik1mc.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Михаил Кержаков</h4>
+                    <div class="player-position">Вратарь</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">38 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">189 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">84 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Defenders -->
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/8a7/s6a5yldnow31hibnfw24ip1oegy1gcix.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Вячеслав Караваев</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">30 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">176 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">70 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/98b/31ri44blj4pujr2l3lq15xmefu57ix09.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Ваня Дркушич</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">26 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">188 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">80 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/bb3/qoz8ho9czj9l3x4mlcez97g10qwu10g8.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Дуглас Сантос</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">31 год</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">173 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">69 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/271/vyb6wpxrok2j0fb0nnx9ym4pp10cvof8.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Страхиня Эракович</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">24 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">186 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">77 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/d68/u3lnewdy3vaa2i6ydbiqv87zuh10kha2.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Нино</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">188 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">82 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/776/9wgw0pr4byoy2bh30gzrj0ythzbqgkc5.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Арсен Адамов</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">26 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">181 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">69 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/45f/il0yspbifbangmj0432207m14g77rgw0.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Нуралы Алип</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">25 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">188 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">84 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/7c4/kmjzzehtfxnosjzawy99socjif92kdcp.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Юрий Горшков</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">26 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">174 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">70 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="defenders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/a09/9hnnyth648q74t9fm7fcgo5v3ed2ot83.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Роман Вега</h4>
+                    <div class="player-position">Защитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">21 год</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">177 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">74 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Midfielders -->
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/930/dhq7mv2r397w0hl7zv5g2wxhraw76gep.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Александр Ерохин</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">36 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">193 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">82 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/3ed/jjiq535vwldxkbx5aljzk1z3qshoytq2.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Андрей Мостовой</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">179 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">73 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/1bb/dqfgdwnh2jzeczwo58uyg3e0m9bh80la.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Максим Глушенков</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">26 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">179 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">69 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/cf9/jrhw2ij6n7928guqnra05bnjlw1f96xs.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Луис Энрике</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">24 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">182 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">77 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/b8f/rta70rickjkcs32ii97pd4r8t89zn7b7.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Вадим Шилов</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">17 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">174 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">72 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/272/s0g6i6byo9xotq48tsb1ss0pa01s6q0s.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Ярослав Михайлов</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">22 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">182 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">75 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/47f/vfwn432pyb8jw1niib9ox32ej04xj5um.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Вендел</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">180 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">73 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/849/t6jonj430bwpwusradeb5y18h789v3nq.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Густаво Мантуан</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">24 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">174 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">76 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/f9c/9e66p7dqm4wh94ax4pktfkwvtumji2id.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Жерсон</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">184 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">80 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-category="midfielders">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/a5b/gw1ot17u59zf9mw3uni3e5j2lb5vmqoh.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name"> Вильмар Барриос</h4>
+                    <div class="player-position">Полузащитник</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">32 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">178 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">74 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forwards -->
+            <div class="player-card" data-category="forwards">
+                <div class="player-photo">
+                <img src="https://en.fc-zenit.ru/upload/iblock/3e7/epai5fusvyj0f87crgrvpqq3eoosmnf2.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Александр Соболев</h4>
+                    <div class="player-position">Нападающий</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">191 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">85 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="player-card" data-category="forwards">
+                <div class="player-photo"> 
+                <img src="https://en.fc-zenit.ru/upload/iblock/f9e/s1q32to68i596mrrva55rsjs3b9syebw.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Матео Кассьерра</h4>
+                    <div class="player-position">Нападающий</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">28 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">186 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">77 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card" data-category="forwards">
+                <div class="player-photo">
+                    <img src="https://en.fc-zenit.ru/upload/iblock/da7/309134s8ua265sfen0c41mg5io0x63q7.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Лусиано Гонду</h4>
+                    <div class="player-position">Нападающий</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">24 года</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">189 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">84 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card" data-category="forwards">
+                <div class="player-photo">
+                    <img src="https://en.fc-zenit.ru/upload/iblock/f41/hlvm7iramfu6r4olzkrk7g39gbqnofpa.png" alt="Picture background" width="330" height="250" aria-hidden="true">
+                </div>
+                <div class="player-info">
+                    <h4 class="player-name">Педро</h4>
+                    <div class="player-position">Нападающий</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">19 лет</span>
+                            <span class="stat-label">Возраст</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">170 см</span>
+                            <span class="stat-label">Рост</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">72 кг</span>
+                            <span class="stat-label">Вес</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Тренерский штаб</h3>
+        
+        <div class="coaching-staff">
+            <div class="coach-card">
+                <h4 class="coach-name">Виллиам де Оливейра</h4>
+                <div class="coach-role">Главный тренер</div>
+                <p>Опытный специалист, возглавляющий тренерский штаб команды.</p>
+            </div>
+            
+            <div class="coach-card">
+                <h4 class="coach-name">Анатолий Тимощук</h4>
+                <div class="coach-role">Тренер</div>
+                <p>Легенда украинского футбола, в прошлом капитан "Зенита" и сборной Украины.</p>
+            </div>
+            
+            <div class="coach-card">
+                <h4 class="coach-name">Александр Анюков</h4>
+                <div class="coach-role">Тренер</div>
+                <p>Бывший защитник "Зенита", один из лучших правых защитников в истории клуба.</p>
+            </div>
+            
+            <div class="coach-card">
+                <h4 class="coach-name">Михаил Бирюков</h4>
+                <div class="coach-role">Тренер вратарей, советник председателя правления</div>
+                <p>Опытный специалист по подготовке вратарей.</p>
+            </div>
+            
+            <div class="coach-card">
+                <h4 class="coach-name">Юрий Жевнов</h4>
+                <div class="coach-role">Тренер вратарей</div>
+                <p>Бывший вратарь сборной Беларуси, специалист по подготовке голкиперов.</p>
+            </div>
+            
+            <div class="coach-card">
+                <h4 class="coach-name">Александр Попович</h4>
+                <div class="coach-role">Руководитель видеоаналитического отдела</div>
+                <p>Специалист по аналитике и тактической подготовке.</p>
+            </div>
+        </div>
+
+        <h3 class="section-title">Легенды клуба</h3>
+        
+        <div class="legends-grid">
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Владимир Казаченок</h4>
+                    <div class="legend-era">1970-е годы</div>
+                    <p class="legend-achievements">Футболист, чья карьера в «Зените» началась в 1970-х. Казаченок стал символом борьбы и самопожертвования на поле, заложив основы для будущих побед клуба.</p>
+                </div>
+            </div>
+            
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Александр Горшков</h4>
+                    <div class="legend-era">1997-2008 годы</div>
+                    <p class="legend-achievements">Играл за «Зенит» с 1997 по 2008 годы, провёл за клуб 253 матча и забил 30 голов. Его универсализм позволял успешно сочетать оборонительные и атакующие функции.</p>
+                </div>
+            </div>
+            
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Константин Зырянов</h4>
+                    <div class="legend-era">Начало 2000-х</div>
+                    <p class="legend-achievements">Был ключевым игроком полузащиты «Зенита». Его дальние удары и самоотверженная игра сделали огромный вклад в успехи клуба в начале 2000-х.</p>
+                </div>
+            </div>
+            
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Вячеслав Малафеев</h4>
+                    <div class="legend-era">1999-2016 годы</div>
+                    <p class="legend-achievements">Голкипер, играл в «Зените» с 1999 по 2016 год. Рекордсмен клуба по числу матчей во всех турнирах в новой истории клуба — 439 встреч. Провёл 164 сухих матча — рекорд в истории клуба.</p>
+                </div>
+            </div>
+            
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Андрей Аршавин</h4>
+                    <div class="legend-era">1999-2008, 2012, 2013-2015 годы</div>
+                    <p class="legend-achievements">Полузащитник, нападающий, играл в «Зените» с 1999 по 2008 год, а также в аренде в 2012 году и с 2013 по 2015 год. С «Зенитом» Андрей выиграл три чемпионата России, Кубок и Суперкубок УЕФА.</p>
+                </div>
+            </div>
+            
+            <div class="legend-card">
+                <div class="legend-content">
+                    <h4 class="legend-name">Александр Анюков</h4>
+                    <div class="legend-era">2005-2019 годы</div>
+                    <p class="legend-achievements">Защитник, играл в «Зените» с 2005 года по 2019-й — всего на протяжении 14 сезонов. Один из лучших правых защитников в истории сине-бело-голубых и член «Клуба Легенд».</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FcZeniTeam</h3>
+                    <p>Один из самых титулованных футбольных клубов России. Основан в 1925 году.</p>
+                    <p>Санкт-Петербург, Россия</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <a href="page.html">Главная</a>
+                    <a href="page2.html">Матчи</a>
+                    <a href="page3.html">Наша команда</a>
+                    <a href="page4.html">Медиа-фан</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: info@fc-zenit.ru</p>
+                    <p>Телефон: +7 (812) 333-33-33</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ФК Зенит. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Category filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const playerCards = document.querySelectorAll('.player-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide player cards based on category
+                    playerCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add hover effect to player cards
+            playerCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 25px rgba(0, 0, 0, 0.12)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.08)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

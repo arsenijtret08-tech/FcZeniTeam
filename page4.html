@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФК Зенит - Медиа-фан</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили для улучшения внешнего вида */
+    /* Header styles */
+        header {
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #f5f5f5;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #f5f5f5;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main content styles */
+        main {
+            padding: 40px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #0047BB;
+            margin-bottom: 10px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #0047BB;
+            margin: 40px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        h4 {
+            margin: 0;
+            color: #0c4da2; /* Синий цвет, ассоциированный с Зенитом */
+        }
+        button {
+            background: linear-gradient(to bottom, #0c4da2, #6ca0dc);
+            border: none;
+            border-radius: 8px;
+            padding: 15px 25px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button h4 {
+            color: white;
+            font-size: 1.5em;
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        h2 {
+            color: #0c4da2;
+            border-bottom: 2px solid #0c4da2;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .hymn {
+            white-space: pre-line;
+            font-style: italic;
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #0c4da2;
+            border-radius: 4px;
+        }
+        .media-list, .chants-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .media-list li, .chants-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .media-list li:last-child, .chants-list li:last-child {
+            border-bottom: none;
+        }
+        .media-list a, .chants-list a {
+            color: #0c4da2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .media-list a:hover, .chants-list a:hover {
+            text-decoration: underline;
+        }
+        .chant-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .chant-text {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .audio-note {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+        /* Footer */
+        footer {
+            background-color: #00264D;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #f5f5f5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            background-color: #0047BB;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #f5f5f5;
+            color: #00264D;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>FC <span>ZeniTeam</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="page.html">Главная</a></li>
+                        <li><a href="page2.html">Матчи</a></li>
+                        <li><a href="page3.html">Команда</a></li>
+                        <li><a href="page4.html" class="active">Медиа-фан</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+     <div class="container">   
+        <section id="hymn">
+            <h2>Гимн клуба</h2>
+            <div class="hymn">
+Город над вольной Невой,
+Где болеют за «Зенит» родной,
+Слушай, Ленинград, я тебе спою
+Задуманную песню свою.
+Мы твои верные друзья,
+Будем вдохновлять тебя навсегда,
+Сектор 33 – в непогоду в зной
+Мы душою и сердцем с тобой
+
+Если тебе нелегко,
+Будешь ты от дома далеко
+Мы с тобой, «Зенит», мы с тобой всегда,
+Ты не будешь один никогда!
+
+Если соперник – «Спартак»,
+Ты не забывай своих атак
+«Гамбург» и «Рапид», всех он победит,
+Наш родной ленинградский «Зенит»!
+
+Я хочу, чтоб флаг голубой
+Реял над всем миром и страной.
+Кубок УЕФА наш «Зенит» возьмёт
+И победную песню споёт!
+
+<h4>THE HATTERS - Город над вольной Невой / Гимн Зенита (клип) </h4>
+    <iframe width="720" height="405" src="https://rutube.ru/play/embed/00c7acd30c9849f407531b8b9d3da454/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+        </section>
+
+        <section id="media">
+            <h2>Медиаматериалы</h2>
+            <ul class="media-list">
+                <li><strong>Видео: 100 лет ФК"Зенит"</strong> </li>
+                        <h4>100 ЛЕТ ЗЕНИТА: с днем рождения, великий клуб!</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/4f44860300749cf84eb1771b7b432aad/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>СТО ЛЕТ ЗЕНИТУ: творим историю вместе!</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/fc58eb7d465acbcc274c7ed4907e188f/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ПОЛНОЧЬ В ЗЕНИТЕ: из 2025-го в 1925-й!</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/1db4e731946652cc4681c8791172e6c1/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ИСТОРИЧЕСКОЕ ФОТО ЗЕНИТА: как это было</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/2e430ac2efbb6b5cbea5532f7bdd6e79/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЛЕГЕНДЫ ЗЕНИТА много лет спустя</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/2c8a1aad7e0f693e56286534b00c44d1/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>The Hatters на ГАЗПРОМ АРЕНЕ</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/1ecdbe1b8fb8f443cc1d12e8dcc764c3/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЗЕНИТ в ЛАХТА ЦЕНТРЕ</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/14e1ad76c714c3ca98b1089860e31b5f/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ПЯТЬ МИНУТ ДО СТОЛЕТИЯ: новогодний матч Зенита и Газпромбанка</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/1e18e9edd3e078e7eb56185cb3307d3e/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <li><strong>Видео с матчей и тренировок</strong> </li>                  
+                    <ul>
+                        <h4>СОЧИ — ЗЕНИТ: обзор всех голов матча (17 октября 2025 года)</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/d694342f1151453c220b411fd0c13d0f/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЗЕНИТ — РУБИН: все о матче на Газпром Арене (30 ноября 2025 года)</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/75967f1ef2c5ff6803b5762d177eb9c6/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЗЕНИТ НА ДВОРЦОВОЙ: тренировка, которая вошла в историю</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/0f1b1693378bc82f6aa89eca8e92fada/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЗЕНИТ В 2024-м: ПОБЕДЫ, ТРОФЕИ, РЕКОРДЫ</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/7699a1f20b246ad52ab598f9cc3aab1b/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЛУЧШИЙ ГОЛ первой половины сезона-2024/25. ФИНАЛ</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/3cfa58a5a12fb8b456879e4857e2611d/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>МАТЧ ЛЕГЕНД ЗЕНИТА: лучшие моменты</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/a8dcd796362d0fef4fe907d871492c4d/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <li><strong>Видео:Зенит вне игры</strong> </li>
+                        <h4>«Новый Петербург»: сине-бело-голубые представляют игровую форму на сезон-2025/26</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/635a79d3ac1bf3997ed604bc54b499c0/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>Шедевр художников и фанатов в Академии «Зенита»</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/ec447f11520523875ef4a00a78c3d983/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ГОД ЛЕГЕНДАРНЫХ ПОБЕД на флагштоке: как это было</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/8ce057721578820bad9b085c4956ab5c/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ОТКРЫТИЕ ЗЕНИТОВСКОЙ ЁЛКИ в центре Петербурга</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/5edeb212e7024c8a4fc0d6a6052c35da/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>ЗЕНИТ В ФИЛАРМОНИИ: Кубок-1944, симфония Шостаковича, презентация Лусиано</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/5091287d6ecc07330a0aa652cb71d85b/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <li><strong>Видео:Zenit for kids</strong> </li>
+                        <h4>Про Миру и Гошу - Зенит | Мама, папа и футбол</h4>
+                        <h6>История рассказывает о двух мальчиках — Гоше и Ване. Один чувствует поддержку и доверие со стороны семьи, другой — находится под давлением. Зрители получат возможность узнать, как родительские ожидания могут повлиять на внутреннее состояние ребенка.Выпуск появился в рамках совместного проекта сине-бело-голубых и «Просто о важном», который направлен на поддержку психологического здоровья юных футболистов и формирование здорового диалога между детьми и родителями в спорте.</h6>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/58685b5a999d5843a4d9650e6bf78260/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>Зенит | Барбоскины | ГОООЛ!</h4>
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/d69772ad8ed0465151059ed52f40001e/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <h4>СЕМЕЙНАЯ ВЕЧЕРИНКА ЗЕНИТА: как это было в 2025-м</h4> 
+                        <iframe width="720" height="405" src="https://rutube.ru/play/embed/95f1db8ba1413286c37d740683bdc4fa/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="chants">
+         <div class="container">
+            <h2>Чанты и кричалки</h2>
+            <p class="audio-note">Тексты фанатских кричалок</p>
+            <div class="chants-list">
+                <div class="chant-item">
+                    <span class="chant-text">«В небе звёздочка горит — это Питерский „Зенит“!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Зенит» — это скорость, «Зенит» — это класс! «Зенит» побеждает и радует нас!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Это не ливень, это не град — это в атаке „Зенит“-Ленинград!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Не красно-белые, не красно-синие, а только сине-бело-голубой!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Зенит» родимый, непобедимый, непобедимы мы с тобой!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Эй, „Зенит“, давай вперёд — Ленинград победы ждёт!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Раз — два — три, „Зенитушка“ дави!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«Зенит» — это я, «Зенит» — это мы, «Зенит» — это лучшие люди страны!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«НУЖЕН ГОЛ!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«СИНЕ-БЕЛО-ГОЛУБЫЕ! ХЭЙ! ХЭЙ!»</span>
+                </div>
+                <div class="chant-item">
+                    <span class="chant-text">«ВПЕРЁД, ЗЕНИТ! ВПЕРЁД, ЗА ПИТЕР!»</span>
+                     <p class="audio-note">Видеофайлы знаменитых фанатских песен</p>
+                    <h4>«Король и Шут» — Мы верим в «Зенит»</h4>
+                     <iframe width="720" height="405" src="https://rutube.ru/play/embed/49e1bf74b1ed15bcbe50c2a57d31c6d6/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                     <h4>ЛЕНИНГРАД и ЗЕНИТ поют на СУПЕРКУБКЕ</h4>
+                    <iframe width="720" height="405" src="https://rutube.ru/play/embed/8519a0cfd16e34ad57fccf97ac45d776/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                    <h4>Перфоманс "Вираж - Фанаты Зенита"</h4>
+                    <iframe width="720" height="405" src="https://rutube.ru/play/embed/caf44135914636fc91eb7f91ade73e72/" style="border: none;" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FcZeniTeam</h3>
+                    <p>Один из самых титулованных футбольных клубов России. Основан в 1925 году.</p>
+                    <p>Санкт-Петербург, Россия</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <a href="page.html">Главная</a>
+                    <a href="page2.html">Матчи</a>
+                    <a href="page3.html">Наша команда</a>
+                    <a href="page4.html">Медиа-фан</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: info@fc-zenit.ru</p>
+                    <p>Телефон: +7 (812) 333-33-33</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ФК Зенит. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
