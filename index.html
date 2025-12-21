@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FcZeniTeam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .history-section {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .history-section ul {
+            list-style: none;
+        }
+        .history-section li strong {
+            color: #00A9E0;  
+        }
+        /* Header styles */
+        header {
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo i {
+            font-size: 2.5rem;
+            color: #f5f5f5;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo span {
+            color: #f5f5f5;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        /* Main content styles */
+        main {
+            padding: 40px 0;
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #0047BB;
+            margin-bottom: 10px;
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #0047BB, #00A9E0);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #0047BB;
+            margin: 40px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+         #news-section h2,
+         .history-section h2 {
+           font-size: 1.8rem;
+           color: #0047BB;
+           margin: 40px 0 25px;
+           padding-bottom: 10px;
+           border-bottom: 2px solid #eaeaea;
+        }
+         #news-section {
+         margin: 30px 0;
+         padding: 20px;
+         background-color: white;
+         border-radius: 8px;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+         .news-item {
+          background: white;
+          padding: 15px;
+          margin-bottom: 15px;
+         border-radius: 8px;
+         border-left: 4px solid #0047BB;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+         transition: transform 0.2s;
+        }
+         .news-item:hover {
+          transform: translateX(5px);
+         }
+        .news-date {
+         display: block;
+         color: #666;
+         font-size: 0.85rem;
+         margin-top: 5px;
+         font-style: italic;
+        }
+         .history-section h3 {
+          font-size: 1.4rem;
+          color: #00A9E0;
+          margin: 25px 0 15px;
+        }
+  /* Footer */
+        footer {
+            background-color: #00264D;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #f5f5f5;
+        }
+        .footer-section p, .footer-section a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        .footer-section a:hover {
+            color: #f5f5f5;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            background-color: #0047BB;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+        .social-links a:hover {
+            background-color: #f5f5f5;
+            color: #00264D;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        /* Стили для read-more */ 
+         .read-more {
+         color: #0047BB;
+         text-decoration: none;
+         font-weight: bold;
+         display: inline-block;
+         margin-top: 5px;
+        }
+         .read-more:hover {
+          text-decoration: underline;
+        }
+        /* Стили для кнопки загрузки новостей */
+        #load-more-news {
+         background: linear-gradient(to right, #0047BB, #00A9E0);
+         color: white;
+         border: none;
+         padding: 12px 25px;
+         font-size: 1rem;
+         font-weight: 600;
+         border-radius: 25px;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         box-shadow: 0 4px 15px rgba(0, 71, 187, 0.2);
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+        }
+        #load-more-news:hover {
+         transform: translateY(-2px);
+         box-shadow: 0 6px 20px rgba(0, 71, 187, 0.3);
+        }
+        #load-more-news:active {
+         transform: translateY(0);
+        }
+        #load-more-news:disabled {
+         background: #6c757d;
+         cursor: not-allowed;
+         transform: none;
+        }
+        /* Адаптивное изображение */
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-width: 1920px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>  
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <h1>Fc <span>ZeniTeam</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html"class="active">Главная</a></li>
+                        <li><a href="page2.html">Матчи</a></li>
+                        <li><a href="page3.html">Команда</a></li>
+                        <li><a href="page4.html">Медиа-фан</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <img src="https://fc-zenit.ru/upload/gallery/photo/22933/1348738_sPICT.jpg" 
+             alt="Футбольная команда Зенит на стадионе" 
+             class="main-image">
+
+<section id="news-section">
+    <h2>Последние новости</h2>
+    <div id="news-container">
+        <div class="news-item">
+            <p><strong>«Зенит» стал самым посещаемым клубом Восточной Европы по итогам первой половины сезона</strong></p>
+            <a href="https://metaratings.ru/blog/rpl-poseshchaemost-skolko-hodyat-na-zenit-spartak-krasnodar-futbol-v-vostochnoj-evrope-polshe/?utm_source=fc-zenit.ru&utm_medium=referral&utm_campaign=fc-zenit.ru&utm_referrer=fc-zenit.ru" target="_blank" class="read-more">Читать полностью →</a>
+            <span class="news-date">12.12.2025</span>
+        </div>
+
+        <div class="news-item">
+            <p><strong>Определено расписание первых матчей «Зенита» в 2026 году</strong></p>
+            <a href="https://fc-zenit.ru/news/2025-12-10-opredeleno-raspisanie-pervykh-matchey-zenita-v-2026-godu.htm" target="_blank" class="read-more">Читать полностью →</a>
+            <span class="news-date">10.12.2025</span>
+        </div>
+       
+        <div class="news-item">
+            <p><strong>«Зенит» завершает год победой!</strong></p>
+            <a href="https://fc-zenit.ru/news/2025-12-06-zenit-zavershaet-god-pobedoy.htm" target="_blank" class="read-more">Читать полностью →</a>
+            <span class="news-date">06.12.2025</span>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <button id="load-more-news" onclick="loadMoreNews()">
+            <i class="fas fa-arrow-down"></i> Загрузить больше новостей
+        </button>
+        <div id="news-counter" style="margin-top: 10px; color: #666; font-size: 0.9rem;">
+            Показано 3 из 9 новостей
+        </div>
+    </div>
+</section>
+
+<script>
+const moreNews = [
+    {title: "Вадим Шилов признан самым перспективным футболистом России", content: "11 ноября издание «Спорт-Экспресс» опубликовало список наиболее талантливых российских игроков 2006–2008 годов рождения.Престижный рейтинг возглавил полузащитник петербуржцев Вадим Шилов. Кроме того, игроки системы «Зенита» Матвей Иванов и Даниил Кондаков заняли 15-е и 16-е места соответственно, а Богдан Левандовский расположился на 39-й строчке. В 2025 году Вадим Шилов стал чемпионом МФЛ вместе с молодежной командой сине-бело-голубых, а также выиграл Дивизион Б Второй лиги с «Зенитом»-2 В настоящий момент на счету игрока — 8 матчей и 2 забитых мяча в составе главной команды клуба.", date: "11.11.2025"},
+    {title: "Молодежная команда «Зенита» — победитель Молодежной футбольной лиги!", content: "Команда Александра Селенкова завоевала золотые медали МФЛ сезона-2025 досрочно.В 29-м туре МФЛ «Зенит» в Казани обыграл «Рубин» со счетом 3:2 и оторвался от соперников в турнирной таблице на недосягаемое расстояние. За тур до финиша сезона сине-бело-голубые набрали 67 баллов и возглавили группу. Уверенная победа в гостях над казанским «Рубином» позволила молодежной команде «Зенита» повторить успех молодежного первенства России 2009 года и завоевать золотые медали впервые за 16 лет.", date: "07.11.2025"},
+    {title: "Александр Ерохин вошел в топ-20 бомбардиров в истории «Зенита»", content: "Дубль в ворота «Оренбурга» во вчерашнем кубковом матче (6:0) довел число голов Ерохина в футболке петербургского клуба до 45. Таким образом, полузащитник опередил в списке лучших бомбардиров сине-бело-голубых Александра Спивака и Романа Широкова и поднялся на 20-ю строчку. ", date: "23.10.2025"},
+    {title: "В России учредили Клуб имени Сергея Семака", content: "Соответствующее решение было принято 14 октября в ходе общероссийской тренерской конференции.Новый символический клуб объединит футболистов, ставших чемпионами России в качестве игроков и в качестве тренеров. В настоящее время главный тренер «Зенита» является единственным обладателем подобного достижения. Будучи игроком, Семак пять раз побеждал в чемпионате страны, выступая за ЦСКА (сезон-2003), «Рубин» (2008 и 2009) и «Зенит» (2010 и 2011/12). Также на счету Сергея Богдановича — шесть чемпионских титулов в качестве главного тренера сине-бело-голубых, выигранных подряд, начиная с сезона-2018/19 по сезон-2023/24.", date: "14.10.2025"},
+    {title: "Максим Глушенков признан WINLINE Игроком сентября", content: "Полузащитник сине-бело-голубых стал лучшим футболистом Мир Российской Премьер лиги в первом месяце осени.Голосование за WINLINE Игрока по итогам каждого месяца проходит в три этапа: победителя в номинации выбирают болельщики в социальных сетях, а также эксперты лиги и комментаторы канала «Матч Премьер». В сентябре победу в каждой из категорий одержал Максим Глушенков.В минувшем месяце игрок петербуржцев принял участие в трех матчах Мир РПЛ, забил пять мячей и сделал одну результативную передачу. Ранее болельщики сине-бело-голубых признали полузащитника «G-Drive. Лучшим игроком сентября».", date: "08.10.2025"},
+    {title: "Трое зенитовцев — в итоговом составе сборной России", content: "Тренерский штаб национальной команды определил финальный список футболистов, вызванных на октябрьский тренировочный сбор.В него вошли четверо игроков сине-бело-голубых: вратарь Денис Адамов, защитник Юрий Горшков, а также полузащитник Максим Глушенков. На втором осеннем тренировочном сборе национальная команда проведет два товарищеских матча: 10 октября сборная России сыграет с Ираном в Волгограде, 14 октября встретится в Москве с Боливией.", date: "03.10.2025"},
+];
+
+let loadedNewsCount = 3; // Уже загружено 3 новости
+const newsPerLoad = 3; // Сколько новостей загружать за раз
+
+function loadMoreNews() {
+    const container = document.getElementById('news-container');
+    const loadButton = document.getElementById('load-more-news');
+    const counter = document.getElementById('news-counter');
+    
+    // Загружаем следующую порцию новостей
+    for (let i = 0; i < newsPerLoad; i++) {
+        if (loadedNewsCount >= moreNews.length + 3) {
+            // Все новости загружены
+            loadButton.disabled = true;
+            loadButton.innerHTML = '<i class="fas fa-check"></i> Все новости загружены';
+            loadButton.style.backgroundColor = '#28a745';
+            break;
+        }
+        
+        let newsItem;
+        if (loadedNewsCount < 3) {
+            // Первые 3 уже есть в HTML
+            loadedNewsCount++;
+            continue;
+        } else {
+            // Добавляем из массива
+            const newsIndex = loadedNewsCount - 3;
+            if (newsIndex >= moreNews.length) break;
+            
+            newsItem = document.createElement('div');
+            newsItem.className = 'news-item';
+            newsItem.innerHTML = `
+                <p><strong>${moreNews[newsIndex].title}:</strong> ${moreNews[newsIndex].content}</p>
+                <span class="news-date">${moreNews[newsIndex].date}</span>
+            `;
+            container.appendChild(newsItem);
+            loadedNewsCount++;
+        }
+    }
+    
+    // Обновление счетчика
+    counter.textContent = `Показано ${loadedNewsCount} из ${moreNews.length + 3} новостей`;
+    
+    // Плавная прокрутка к последней загруженной новости
+    const lastNews = container.lastElementChild;
+    lastNews.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+const additionalStyle = `
+     `;
+</script>
+
+        <section class="history-section">
+            <h2>История клуба</h2>
+            <p>«Зенит» — единственный футбольный клуб в нашей стране, обладающий всеми высшими наградами как советского, так и российского первенства. И единственный в России обладатель Кубка и Суперкубка УЕФА. Официальная дата основания клуба — <strong>25 мая 1925 года</strong>. Прародителями «Зенита» считаются футбольные команды физкультурного кружка Ленинградского металлического завода (ЛМЗ) имени Сталина.</p>
+            
+            <h3>Этапы истории клуба</h3>
+            <ul>
+                <li><strong>1936:</strong> Команда переименована в «Сталинец» и включена в состав участников чемпионатов СССР.</li>
+                <li><strong>1938:</strong> Ленинградская команда перешла в Высшую лигу (группу А).</li>
+                <li><strong>1939:</strong> Выход в финал Кубка СССР.</li>
+                <li><strong>1940-1950:</strong> Путаница с названиями команд.</li>
+                <li><strong>1944:</strong> Клуб изменил название на «Зенит» и выиграл Кубок СССР.</li>
+                <li><strong>Конец 1970-х:</strong> Возрождение «Зенита» после почти 20-летнего затишья.</li>
+                <li><strong>1978:</strong> Команду возглавил Юрий Морозов, завоеваны бронзовые медали и выход в еврокубки.</li>
+                <li><strong>1984:</strong> Под руководством Павла Садырина «Зенит» стал чемпионом СССР.</li>
+                <li><strong>Середина 1990-х:</strong> Преображение клуба с приходом Виталия Мутко.</li>
+                <li><strong>1999:</strong> С Анатолием Давыдовым выигран Кубок России и завоевана бронза чемпионата.</li>
+                <li><strong>2005:</strong> РАО «Газпром» приобрело контрольный пакет акций.</li>
+                <li><strong>2007:</strong> «Зенит» снова стал чемпионом России.</li>
+                <li><strong>2008:</strong> Победа в Кубке УЕФА (финал против «Рейнджерс»).</li>
+                <li><strong>Последние годы:</strong> Под руководством Сергея Семака продолжается доминирование в российском футболе.</li>
+            </ul>
+        </section>
+     </main>
+
+   <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FcZeniTeam</h3>
+                    <p>Сайт болельщиков футбольного клуба «Зенит»</p>
+                    <p>Здесь вы найдёте свежие новости и уникальные материалы о клубе</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="page2.html">Матчи</a>
+                    <a href="page3.html">Команда</a>
+                    <a href="page4.html">Медиа-фан</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: info@fc-zenit.ru</p>
+                    <p>Телефон: +7 (812) 333-33-33</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/zenit"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/fczenit"><i class="fab fa-telegram"></i></a>
+                        <a href="https://rutube.ru/channel/24809069/"><i class="fab fa-rutube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 ФК Зенит. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+  </body>
+  </html>
